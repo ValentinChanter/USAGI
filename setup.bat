@@ -96,11 +96,10 @@ if not exist "venv" (
 
     echo !BLUE![INFO]!RESET! Dependencies installed successfully.
 ) else (
-    echo !BLUE![INFO]!RESET! Virtual environment already exists. Skipping creation.
+    echo !BLUE![INFO]!RESET! Virtual environment already exists.
+    echo !BLUE![INFO]!RESET! If you want to recreate it, please delete the "venv" folder and run this script again.
 )
 
-REM ─────────────────────────────
-REM Open a cmd with the venv activated
-echo !BLUE![INFO]!RESET! Activating virtual environment...
-call "%cd%\venv\Scripts\activate.bat"
-cmd /k
+echo.
+echo Press any key to close this window...
+pause >nul
