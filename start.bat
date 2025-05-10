@@ -10,4 +10,6 @@ REM ─────────────────────────�
 REM Open a cmd with the venv activated
 echo %BLUE%[INFO]%RESET% Activating virtual environment...
 call "%cd%\venv\Scripts\activate.bat"
+
+cd src
 cmd /k
