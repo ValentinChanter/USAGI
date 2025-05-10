@@ -95,9 +95,11 @@ if not exist "venv" (
     )
 
     echo !BLUE![INFO]!RESET! Dependencies installed successfully.
+    echo !BLUE![INFO]!RESET! To get started, run "start.bat" and type "python main.py -h" to see the help menu.
 ) else (
     echo !BLUE![INFO]!RESET! Virtual environment already exists.
     echo !BLUE![INFO]!RESET! If you want to recreate it, please delete the "venv" folder and run this script again.
+    echo !BLUE![INFO]!RESET! If you want to use the script, run "start.bat" and type "python main.py -h" to see the help menu.
 )
 
 echo.
