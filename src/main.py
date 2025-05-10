@@ -160,7 +160,7 @@ def separate_audio_files(songs_path, exclusions=[], force=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Audio file separator script.")
     parser.add_argument("-f", "--force", action="store_true", help="Force re-separation of already processed files.")
-    parser.add_argument("input", nargs="?", type=str, help="Specify the songs directory containing audio files.")
+    parser.add_argument("input", nargs="?", type=str, help="Specify the songs directory containing audio files.", default="./Songs")
     args = parser.parse_args()
 
     force = args.force
