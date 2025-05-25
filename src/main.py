@@ -52,6 +52,14 @@ def get_exclusions(exclusions_file="exclusions.txt"):
     return []
 
 def check_already_separated(folder_path):
+    """Check if the audio files in the specified folder have already been separated.
+
+    Args:
+        folder_path (str): The path to the folder containing audio files.
+
+    Returns:
+        bool: True if the audio files have already been separated, False otherwise.
+    """
     folder = os.path.basename(folder_path)
 
     matching_files = 0
