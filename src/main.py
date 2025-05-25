@@ -1,6 +1,11 @@
 from audio_separator.separator import Separator
 import os, re, argparse
-from colorama import Fore, Style
+
+# ANSI escape sequences for colored output
+BLUE = "\033[94m"
+YELLOW = "\033[93m"
+RED = "\033[91m"
+RESET = "\033[0m"
 
 def print_info(message):
     """
@@ -10,7 +15,7 @@ def print_info(message):
         message (str): The message to print.
     """
 
-    print(f"{Fore.CYAN}[INFO] {Style.RESET_ALL}{message}")
+    print(f"{BLUE}[INFO] {RESET}{message}")
 
 def print_warn(message):
     """
@@ -20,7 +25,7 @@ def print_warn(message):
         message (str): The message to print.
     """
 
-    print(f"{Fore.YELLOW}[WARN] {Style.RESET_ALL}{message}")
+    print(f"{YELLOW}[WARN] {RESET}{message}")
 
 def print_error(message):
     """
@@ -30,7 +35,7 @@ def print_error(message):
         message (str): The message to print.
     """
 
-    print(f"{Fore.RED}[ERROR] {Style.RESET_ALL}{message}")
+    print(f"{RED}[ERROR] {RESET}{message}")
 
 def get_exclusions(exclusions_file="exclusions.txt"):
     """
