@@ -71,14 +71,14 @@ def check_already_separated(folder_path):
 
     for file in os.listdir(folder_path):
         # If there's any VOC or INSTR file, some separation has already been done
-        if re.search(r"\[(?:VOC|INSTR)\]\.(?:mp3|wav|ogg)$", file):
+        if re.search(r"\[(?:VOC|INSTR)\]\.(?:mp3|wav|ogg|m4a)$", file):
             matching_files += 1
 
         if file == f"{folder}.txt":
             with open(os.path.join(folder_path, file), 'r', encoding='utf-8') as txt_file:
                 content = txt_file.read()
-                if re.search(rf"#VOCALS: ?.* \[VOC\]\.(?:mp3|wav|ogg)", content) and \
-                re.search(rf"#INSTRUMENTAL: ?.* \[INSTR\]\.(?:mp3|wav|ogg)", content):
+                if re.search(rf"#VOCALS: ?.* \[VOC\]\.(?:mp3|wav|ogg|m4a)", content) and \
+                re.search(rf"#INSTRUMENTAL: ?.* \[INSTR\]\.(?:mp3|wav|ogg|m4a)", content):
                     matching_files += 1
 
             txt_file.close()
@@ -116,6 +116,7 @@ def separate_audio_files(songs_path, exclusions=[], force=False):
             mp3_name = os.path.join(folder_path, f"{folder}.mp3")
             wav_name = os.path.join(folder_path, f"{folder}.wav")
             ogg_name = os.path.join(folder_path, f"{folder}.ogg")
+            m4a_name = os.path.join(folder_path, f"{folder}.m4a")
             name = ""
             
             if os.path.exists(mp3_name):
@@ -124,6 +125,8 @@ def separate_audio_files(songs_path, exclusions=[], force=False):
                 name = wav_name
             elif os.path.exists(ogg_name):
                 name = ogg_name
+            elif os.path.exists(m4a_name):
+                name = m4a_name
             else:
                 print_warn(f"No audio file found in {folder}. Skipping...")
                 continue
