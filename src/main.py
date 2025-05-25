@@ -44,7 +44,7 @@ def get_exclusions(exclusions_file="exclusions.txt"):
     """
 
     if os.path.exists(exclusions_file):
-        with open(exclusions_file, 'r') as file:
+        with open(exclusions_file, 'r', encoding='utf-8') as file:
             exclusions = [line.strip() for line in file.readlines()]
 
         file.close()
@@ -70,7 +70,7 @@ def check_already_separated(folder_path):
             matching_files += 1
 
         if file == f"{folder}.txt":
-            with open(os.path.join(folder_path, file), 'r') as txt_file:
+            with open(os.path.join(folder_path, file), 'r', encoding='utf-8') as txt_file:
                 content = txt_file.read()
                 if re.search(rf"#VOCALS: ?.* \[VOC\]\.(?:mp3|wav|ogg)", content) and \
                 re.search(rf"#INSTRUMENTAL: ?.* \[INSTR\]\.(?:mp3|wav|ogg)", content):
@@ -137,7 +137,7 @@ def separate_audio_files(songs_path, exclusions=[], force=False):
             txt_file_path = os.path.join(folder_path, f"{folder}.txt")
             lines = []
             if os.path.exists(txt_file_path):
-                with open(txt_file_path, 'r') as txt_file:
+                with open(txt_file_path, 'r', encoding='utf-8') as txt_file:
                     lines = txt_file.readlines()
 
                 txt_file.close()
@@ -160,7 +160,7 @@ def separate_audio_files(songs_path, exclusions=[], force=False):
             if not instr_line in lines:
                 lines.insert(insert_index, instr_line)
 
-            with open(txt_file_path, 'w') as txt_file:
+            with open(txt_file_path, 'w', encoding='utf-8') as txt_file:
                 txt_file.writelines(lines)
 
             txt_file.close()
