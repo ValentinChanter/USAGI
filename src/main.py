@@ -173,13 +173,14 @@ def separate_audio_files(songs_path, exclusions=[], force=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Audio file separator script.")
     parser.add_argument("-f", "--force", action="store_true", help="Force re-separation of already processed files.")
-    parser.add_argument("input", nargs="?", type=str, help="Specify the songs directory containing audio files.", default="./Songs")
+    parser.add_argument("input", nargs="?", type=str, help="Specify the songs directory containing audio files.")
     args = parser.parse_args()
 
     force = args.force
     if not args.input:
-        print_warn("No input directory specified. Using default: ./Songs")
-        songs_path = os.path.join(os.getcwd(), "Songs")
+        print_warn("No input directory specified.")
+        print_warn("Usage: python main.py [--force] <songs_directory>")
+        exit(1)
     else:
         songs_path = args.input
         if not os.path.isabs(songs_path):
