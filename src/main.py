@@ -83,11 +83,7 @@ def check_already_separated(folder_path):
 
             txt_file.close()
 
-    if matching_files == 3:
-        print_info(f"Already separated {folder_path}. Skipping...")
-        return True
-    else:
-        return False
+    return matching_files == 3
 
 def separate_audio_files(songs_path, exclusions=[], force=False):
     """
@@ -100,18 +96,28 @@ def separate_audio_files(songs_path, exclusions=[], force=False):
         force (bool): If True, force re-separation of already processed files. Defaults to False.
     """
 
-    for folder in os.listdir(songs_path):
+    folders_dir = os.listdir(songs_path)
+    folders_count = len(folders_dir)
+    if not folders_dir:
+        print_warn(f"No directories found in {songs_path}. Exiting...")
+        return
+    print_info(f"Found {len(folders_dir)} directories in {songs_path}. Starting separation...")
+
+    curr = 0
+    for folder in folders_dir:
+        curr += 1
         if folder in exclusions:
-            print_info(f"Skipping excluded folder: {folder}")
+            print_info(f"Skipping excluded folder: {folder} ({curr}/{folders_count})")
             continue
 
         folder_path = os.path.join(songs_path, folder)
 
         if not force and check_already_separated(folder_path):
+            print_info(f"Skipping already separated folder: {folder} ({curr}/{folders_count})")
             continue
 
         if os.path.isdir(folder_path):
-            print_info(f"Processing folder: {folder}")
+            print_info(f"Processing folder: {folder} ({curr}/{folders_count})")
 
             mp3_name = os.path.join(folder_path, f"{folder}.mp3")
             wav_name = os.path.join(folder_path, f"{folder}.wav")
